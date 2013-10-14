@@ -1,0 +1,21 @@
+acme_dashboard_homepage:
+    pattern:  /index/{name}
+    defaults: { _controller: AcmeDashboardBundle:Home:index }
+
+
+acme_dashboard_create:
+    pattern:  /create/{name}
+    defaults: { _controller: AcmeDashboardBundle:Home:create }
+
+acme_dashboard_statistics:
+    pattern:  /statistics/{name}
+    defaults: { _controller: AcmeDashboardBundle:Home:statistics }
+
+acme_dashboard_reports:
+    pattern:  /reports/{name}
+    defaults: { _controller: AcmeDashboardBundle:Home:reports }
+
+acme_dashboard_settings:
+    pattern:  /settings/{name}
+    defaults: { _controller: AcmeDashboardBundle:Home:settings }
+
