@@ -3,6 +3,7 @@
 namespace Acme\DashboardBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Acme\DashboardBundle\Entity\Qrcode;
 
 class HomeController extends Controller
 {
@@ -21,6 +22,18 @@ class HomeController extends Controller
 
     public function createAction($name)
     {
+        // $code = new Qrcode();
+
+        // $code->setSecret("xx3x111");
+        // $code->setUsed(false);
+        // $code->setFilename("tes2t.png");
+        // $code->setCreated(new \DateTime("now"));
+
+        // $em = $this->getDoctrine()->getManager();
+        // $em->persist($code);
+        // $em->flush();
+
+
         return $this->render('AcmeDashboardBundle:Home:create.html.twig', array('name' => $name));
     }
 

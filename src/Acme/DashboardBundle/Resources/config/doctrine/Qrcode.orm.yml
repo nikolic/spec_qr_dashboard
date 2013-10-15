@@ -1,0 +1,19 @@
+Acme\DashboardBundle\Entity\Qrcode:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        secret:
+            type: text
+        filename:
+            type: string
+            length: '255'
+        used:
+            type: boolean
+        created:
+            type: datetime
+    lifecycleCallbacks: {  }
