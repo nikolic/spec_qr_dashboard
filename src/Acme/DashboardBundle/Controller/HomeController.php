@@ -6,9 +6,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class HomeController extends Controller
 {
-    public function indexAction($name)
+    public function indexAction()
     {
-        return $this->render('AcmeDashboardBundle:Home:index.html.twig', array());
+        $securityContext = $this->container->get('security.context');
+        if( $securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED') ){
+            // authenticated REMEMBERED, FULLY will imply REMEMBERED (NON anonymous)
+            return $this->render('AcmeDashboardBundle:Home:index.html.twig', array());
+        }
+        else{
+            return $this->redirect($this->generateUrl('fos_user_security_login', array()));
+        }
+        
     }
 
     public function createAction($name)

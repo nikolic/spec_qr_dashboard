@@ -1,5 +1,5 @@
 acme_dashboard_homepage:
-    pattern:  /index/{name}
+    pattern:  /
     defaults: { _controller: AcmeDashboardBundle:Home:index }
 
 
