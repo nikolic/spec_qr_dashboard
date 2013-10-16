@@ -3,4 +3,13 @@
 
 	<h2>Forma za pravljenje</h2>
 
+	<form method="POST" action="{{ path('acme_dashboard_create', { name: 'user'}) }}"> 
+		<select>
+			<option value="5">5</option>
+			<option value="10">10</option>
+			<option value="20">20</option>
+		</select>
+		<input type="submit" name="create_qr"  value="submit"/>
+	</form>
+
 {% endblock %}

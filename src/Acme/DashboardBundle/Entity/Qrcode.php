@@ -136,4 +136,5 @@ class Qrcode
     {
         return $this->created;
     }
+
 }

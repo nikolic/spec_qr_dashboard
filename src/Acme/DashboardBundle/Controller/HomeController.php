@@ -22,19 +22,24 @@ class HomeController extends Controller
 
     public function createAction($name)
     {
-        // $code = new Qrcode();
 
-        // $code->setSecret("xx3x111");
-        // $code->setUsed(false);
-        // $code->setFilename("tes2t.png");
-        // $code->setCreated(new \DateTime("now"));
+        if($this->get('request')->getMethod() == "GET"){
+            return $this->render('AcmeDashboardBundle:Home:create.html.twig', array('name' => $name));
+        }
+        elseif($this->get('request')->getMethod() == "POST"){
 
-        // $em = $this->getDoctrine()->getManager();
-        // $em->persist($code);
-        // $em->flush();
+            $results = $this->_create_qr_code();
 
+            return $this->render('AcmeDashboardBundle:Home:preview.html.twig',
+                                 array(
+                                    'url' => $results["url"] 
+                                    ));
 
-        return $this->render('AcmeDashboardBundle:Home:create.html.twig', array('name' => $name));
+        }
+        else{
+
+        }
+
     }
 
     public function statisticsAction($name)
@@ -50,5 +55,45 @@ class HomeController extends Controller
     public function settingsAction($name)
     {
         return $this->render('AcmeDashboardBundle:Home:settings.html.twig', array('name' => $name));
+    }
+
+    private function _create_qr_code(){
+
+        $secret = uniqid() . substr(str_shuffle(MD5(microtime())), 0, 5);
+ 
+        // $repository = $this->getDoctrine()->getRepository('AcmeDashboardBundle:Qrcode');
+        // $exist = $repository->findOneBy(array('secret' => $secret));
+
+      //  if(!$exist){
+
+            $filename = uniqid() . ".png";
+
+            $save_path = $this->getRequest()->server->get('DOCUMENT_ROOT');
+            $save_path = $save_path . "/codes/" . $filename;
+
+            \PHPQRCode\QRcode::png($secret, $save_path); 
+
+            $code = new Qrcode();
+
+            $code->setSecret($secret);
+            $code->setUsed(false);
+            $code->setFilename($filename);
+            $code->setCreated(new \DateTime("now"));
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($code);
+            $em->flush();
+
+        // }
+        // else{
+
+
+        // } 
+
+        return array('code' => $code, 
+                     'errors' => array(),
+                     'url' => "http://localhost:8000/codes/" . $filename
+                    );   
+
     }
 }

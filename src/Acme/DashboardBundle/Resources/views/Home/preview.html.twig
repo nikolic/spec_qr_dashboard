@@ -1,0 +1,17 @@
+{% extends 'AcmeDashboardBundle::layout.html.twig' %}
+{% block body %}
+
+	<img src="{{url}}" style="width:250px; height:250px;" />
+
+	<br/>
+
+	
+
+
+	<a class="small button" href="{{ path('acme_dashboard_create', { 'name': 'user' }) }}">Create another</a>
+	<br>
+	<a>Send to mail:</a>
+	<br>
+	<a> Send to sms: </a>
+	<br>
+{% endblock %}
