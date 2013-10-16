@@ -32,7 +32,9 @@ class HomeController extends Controller
 
             return $this->render('AcmeDashboardBundle:Home:preview.html.twig',
                                  array(
-                                    'url' => $results["url"] 
+                                    "url" => $results["url"],
+                                    "created" => $results["code"]->getCreated(),
+                                    "filename" => $results["code"]->getFilename(),
                                     ));
 
         }
@@ -84,16 +86,12 @@ class HomeController extends Controller
             $em->persist($code);
             $em->flush();
 
-        // }
-        // else{
+            $base_url = $baseurl = $this->getRequest()->getScheme() . '://' . $this->getRequest()->getHttpHost() . $this->getRequest()->getBasePath();
 
-
-        // } 
-
-        return array('code' => $code, 
-                     'errors' => array(),
-                     'url' => "http://localhost:8000/codes/" . $filename
-                    );   
+            return array('code' => $code, 
+                         'errors' => array(),
+                         'url' => $base_url . "/codes/" . $filename
+                        );   
 
     }
 }
