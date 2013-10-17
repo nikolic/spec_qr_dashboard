@@ -18,28 +18,31 @@
       google.setOnLoadCallback(drawCharts);
 
       function drawTable(tableData) {
+
         var data = new google.visualization.DataTable();
-      	 data.addColumn('string', 'Secret');
+
+      	data.addColumn('string', 'Secret');
        	data.addColumn('string', 'Filename');
        	data.addColumn('boolean', 'Used');
-       	 data.addColumn('number', 'Weight');
+       	data.addColumn('number', 'Weight');
 
-       	 data.addRows(tableData);
+       	data.addRows(tableData);
 
-        //data.addRows([
-     //     ['dsjfi132155','file.png', true, 5],
-        //  [2,   {v:8000,   f: '$8,000'},  false],
-         // [3, {v: 12500, f: '$12,500'}, true],
-         // [4,   {v: 7000,  f: '$7,000'},  true]
-     //   ]);
+      	var options = {
+      		page : 'enable',
+      		pageSize : 10,
+      		pagingSymbols : {prev: 'prev', next: 'next'},
+      		pagingButtonsConfiguration : 'auto',
+      		showRowNumber: true
+      	};
 
         var table = new google.visualization.Table(document.getElementById('table_div'));
-        table.draw(data, {showRowNumber: true, });
+        table.draw(data, options);
       }
 
       function drawChart(data) {
         var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
+          ['Codes', 'Used - Unused'],
           ['Unused',     data.unused],
           ['Used',    data.used]
         ]);
