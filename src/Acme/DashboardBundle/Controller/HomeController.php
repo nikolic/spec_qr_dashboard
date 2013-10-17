@@ -28,7 +28,19 @@ class HomeController extends Controller
         }
         elseif($this->get('request')->getMethod() == "POST"){
 
-            $results = $this->_create_qr_code();
+            $quantity = $this->get('request')->request->get('quantity');
+
+            $weight = $this->get('request')->request->get('weight');
+
+            if(!isset($quantity) || $quantity <= 0){
+                $quantity = 1;
+            }
+
+            $results = null;
+
+            for ($i = 0; $i < $quantity; $i++){
+                $results = $this->_create_qr_code();
+            }
 
             return $this->render('AcmeDashboardBundle:Home:preview.html.twig',
                                  array(
@@ -62,7 +74,6 @@ class HomeController extends Controller
     private function _create_qr_code(){
 
         $secret = uniqid() . substr(str_shuffle(MD5(microtime())), 0, 5);
- 
         // $repository = $this->getDoctrine()->getRepository('AcmeDashboardBundle:Qrcode');
         // $exist = $repository->findOneBy(array('secret' => $secret));
 

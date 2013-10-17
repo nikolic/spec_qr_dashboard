@@ -2,7 +2,6 @@ acme_dashboard_homepage:
     pattern:  /
     defaults: { _controller: AcmeDashboardBundle:Home:index }
 
-
 acme_dashboard_create:
     pattern:  /create/{name}
     defaults: { _controller: AcmeDashboardBundle:Home:create }
@@ -18,4 +17,10 @@ acme_dashboard_reports:
 acme_dashboard_settings:
     pattern:  /settings/{name}
     defaults: { _controller: AcmeDashboardBundle:Home:settings }
+
+acme_dashboard_getdata:
+    pattern:  /ajax/getdata
+    defaults: { _controller: AcmeDashboardBundle:Ajax:getdata }
+
+
 

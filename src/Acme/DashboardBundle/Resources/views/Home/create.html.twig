@@ -1,15 +1,31 @@
 {% extends 'AcmeDashboardBundle::layout.html.twig' %}
 {% block body %}
-
-	<h2>Forma za pravljenje</h2>
-
-	<form method="POST" action="{{ path('acme_dashboard_create', { name: 'user'}) }}"> 
-		<select>
-			<option value="5">5</option>
-			<option value="10">10</option>
-			<option value="20">20</option>
-		</select>
-		<input type="submit" name="create_qr"  value="submit"/>
-	</form>
-
+	<div class="row">
+		<div class="large-12 columns">
+			<h3>Create QR CODE</h3>
+		</div>
+	</div>
+	
+	<div class="row">
+		<form method="POST" class="large-12 columns" action="{{ path('acme_dashboard_create', { name: 'user'}) }}"> 
+			<br/>
+			<div class="row">
+				<div class="large-6 columns">Set weight:</div>
+				<select class="large-6 columns" name="weight" id="weight">
+					<option value="5">5</option>
+					<option value="10">10</option>
+					<option value="20">20</option>
+				</select>
+			</div>
+			<br/>
+			<div class="row">
+				<div class="large-6 columns">Quantity:</div>
+				<input class="large-6 columns" name="quantity" id="quantity" value="1" />
+			</div>
+			<br/>
+			<div class="row">
+				<input class="large-7 columns small button" type="submit" name="create_qr"  value="Create"/>
+			</div>
+		</form>
+	</div>
 {% endblock %}

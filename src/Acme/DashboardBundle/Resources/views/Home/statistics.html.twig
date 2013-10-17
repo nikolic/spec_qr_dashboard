@@ -1,6 +1,83 @@
 {% extends 'AcmeDashboardBundle::layout.html.twig' %}
 {% block body %}
+	<div class="row">
+		<div class="large-12 columns">Statistics</div>
+	</div>
+	<br/>
+	<div class="row">
+		<div class="large-12 columns" id="table_div"></div>
+	</div>
+	<br>
+	<div class="row">
+		<div id="piechart" style=""></div>
+	</div>
 
-	statistic
+    <script type='text/javascript' src='https://www.google.com/jsapi'></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table', 'corechart']});
+      google.setOnLoadCallback(drawCharts);
+
+      function drawTable(tableData) {
+        var data = new google.visualization.DataTable();
+      	 data.addColumn('string', 'Secret');
+       	data.addColumn('string', 'Filename');
+       	data.addColumn('boolean', 'Used');
+       	 data.addColumn('number', 'Weight');
+
+       	 data.addRows(tableData);
+
+        //data.addRows([
+     //     ['dsjfi132155','file.png', true, 5],
+        //  [2,   {v:8000,   f: '$8,000'},  false],
+         // [3, {v: 12500, f: '$12,500'}, true],
+         // [4,   {v: 7000,  f: '$7,000'},  true]
+     //   ]);
+
+        var table = new google.visualization.Table(document.getElementById('table_div'));
+        table.draw(data, {showRowNumber: true, });
+      }
+
+      function drawChart(data) {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Unused',     data.unused],
+          ['Used',    data.used]
+        ]);
+
+     var options = {
+		is3D: true,
+		backgroundColor : "rgb(204, 204, 204)"
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+      }
+
+      function drawCharts(){
+      	//drawTable();
+      	//drawChart();
+      	      $.ajax({
+		  type: "POST",
+		  url: "{{path('acme_dashboard_getdata')}}",
+		  data: null,
+		  contentType: "application/json; charset=utf-8",
+		  dataType: "json",
+		  success: function(data){
+		  	console.log(data.tableData);
+			
+		  	drawChart(data.chartData);
+		  	drawTable(data.tableData);
+		  },
+		  error : function(err){
+		  	console.log(err);
+		  }
+		});
+      }
+
+
+
+    </script>
+
 
 {% endblock %}
+
