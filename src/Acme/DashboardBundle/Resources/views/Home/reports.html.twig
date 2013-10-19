@@ -1,6 +1,34 @@
-{% extends 'AcmeDashboardBundle::layout.html.twig' %}
+
 {% block body %}
+<div class="row">
+    <h1>Qrcode list - Export - {{"now"|date('d/m/Y')}}</h1>
 
-	<h2>reports</h2>
-
-{% endblock %}
+    <table class="records_list" style="border:1px solid black;" >
+        <thead >
+            <tr>
+                <th style="border:1px solid black;background-color:#2ba6cb;">Id</th>
+                <th style="border:1px solid black;background-color:#2ba6cb;">Secret</th>
+                <th style="border:1px solid black;background-color:#2ba6cb;">Filepath</th>
+                 <th style="border:1px solid black;background-color:#2ba6cb;">Used</th>
+                 <th style="border:1px solid black;background-color:#2ba6cb;">Weight</th>
+                 <th style="border:1px solid black;background-color:#2ba6cb;">Created</th>
+                 <th style="border:1px solid black;background-color:#2ba6cb;">Updated</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr >
+                <td style="border:1px solid silver;"><a href="{{ path('qrcode_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td style="border:1px solid silver;">{{ entity.secret }}</td>
+                <td style="border:1px solid silver;"><a href="{{ base_url }}{{ entity.filename }}">{{ base_url }}{{ entity.filename }}</a></td>
+                <td style="border:1px solid silver;">{{ entity.used }}</td>
+                <td style="border:1px solid silver;">{{ entity.weight }}</td>
+                <td style="border:1px solid silver;">{% if entity.created %}{{ entity.created|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td style="border:1px solid silver;">{% if entity.updated %}{{ entity.updated|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br/>
+</div>
+    {% endblock %}

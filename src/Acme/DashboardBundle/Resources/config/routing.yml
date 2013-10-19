@@ -14,6 +14,10 @@ acme_dashboard_reports:
     pattern:  /reports/{name}
     defaults: { _controller: AcmeDashboardBundle:Home:reports }
 
+acme_dashboard_export:
+    pattern:  /export/{name}
+    defaults: { _controller: AcmeDashboardBundle:Home:export }
+
 acme_dashboard_settings:
     pattern:  /settings/{name}
     defaults: { _controller: AcmeDashboardBundle:Home:settings }

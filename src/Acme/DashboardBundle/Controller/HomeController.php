@@ -4,11 +4,13 @@ namespace Acme\DashboardBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Acme\DashboardBundle\Entity\Qrcode;
+use Symfony\Component\HttpFoundation\Response;
 
 class HomeController extends Controller
 {
     public function indexAction()
     {
+
         $securityContext = $this->container->get('security.context');
         if( $securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED') ){
             // authenticated REMEMBERED, FULLY will imply REMEMBERED (NON anonymous)
@@ -68,7 +70,29 @@ class HomeController extends Controller
 
     public function reportsAction($name)
     {
-        return $this->render('AcmeDashboardBundle:Home:reports.html.twig', array('name' => $name));
+       // return $this->render('AcmeDashboardBundle:Home:reports.html.twig', array('name' => $name));
+        $base_url = $this->getRequest()->getScheme() . '://' . $this->getRequest()->getHttpHost() . $this->getRequest()->getBasePath();
+
+        $base_url .= "/codes/";
+
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('AcmeDashboardBundle:Qrcode')->findAll();
+
+        $html = $this->renderView('AcmeDashboardBundle:Home:reports.html.twig', array(
+            'entities'  => $entities,
+            'base_url' => $base_url
+        ));
+
+        return new Response(
+            $this->container->get('knp_snappy.pdf')->getOutputFromHtml($html),
+            200,
+            array(
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'attachment; filename="report_export.pdf"'
+            )
+        );
+
     }
 
     public function settingsAction($name)
