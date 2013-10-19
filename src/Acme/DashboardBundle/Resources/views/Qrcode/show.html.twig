@@ -15,12 +15,16 @@
                 <td>{{ entity.secret }}</td>
             </tr>
             <tr>
-                <th>Filename</th>
-                <td>{{ entity.filename }}</td>
+                <th>QRcode</th>
+                <td><img src="{{ base_url }}{{ entity.filename }}" style="width:150px; height:150px;" /></td>
             </tr>
             <tr>
                 <th>Used</th>
-                <td>{{ entity.used }}</td>
+                {% if entity.used == true %}
+                    <td>Yes</td>
+                {% else %}
+                    <td>No</td>
+                {% endif %}
             </tr>
             <tr>
                 <th>Weight</th>

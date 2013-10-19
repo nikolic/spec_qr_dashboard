@@ -108,6 +108,10 @@ class QrcodeController extends Controller
      */
     public function showAction($id)
     {
+        $base_url = $this->getRequest()->getScheme() . '://' . $this->getRequest()->getHttpHost() . $this->getRequest()->getBasePath();
+
+        $base_url .= "/codes/";
+
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('AcmeDashboardBundle:Qrcode')->find($id);
@@ -120,6 +124,7 @@ class QrcodeController extends Controller
 
         return array(
             'entity'      => $entity,
+            'base_url' => $base_url,
             'delete_form' => $deleteForm->createView(),
         );
     }
