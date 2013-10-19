@@ -26,5 +26,9 @@ acme_dashboard_api_test:
     pattern:  /api/ping
     defaults: { _controller: AcmeDashboardBundle:Api:ping }
 
+acme_dashboard_api_update_qrcode:
+    pattern:  /api/update/{secret}
+    defaults: { _controller: AcmeDashboardBundle:Api:updateQrcode }
+
 
 

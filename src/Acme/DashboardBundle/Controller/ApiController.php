@@ -15,6 +15,17 @@ class ApiController extends Controller
     	$response = array('pong' => true);
 
   		return new Response(json_encode($response)); 
-    }   
+    }  
+
+ 	public function updateQrcodeAction($secret)
+    {
+
+
+
+    	
+    	$response = array('success' => true, 'secret' => $secret);
+
+  		return new Response(json_encode($response)); 
+    }  
 
 }

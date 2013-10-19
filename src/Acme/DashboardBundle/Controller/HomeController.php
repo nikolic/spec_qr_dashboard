@@ -39,7 +39,7 @@ class HomeController extends Controller
             $results = null;
 
             for ($i = 0; $i < $quantity; $i++){
-                $results = $this->_create_qr_code();
+                $results = $this->_create_qr_code($weight);
             }
 
             return $this->render('AcmeDashboardBundle:Home:preview.html.twig',
@@ -47,6 +47,7 @@ class HomeController extends Controller
                                     "url" => $results["url"],
                                     "created" => $results["code"]->getCreated(),
                                     "filename" => $results["code"]->getFilename(),
+                                    "weight" => $results["code"]->getWeight()
                                     ));
 
         }
@@ -71,7 +72,9 @@ class HomeController extends Controller
         return $this->render('AcmeDashboardBundle:Home:settings.html.twig', array('name' => $name));
     }
 
-    private function _create_qr_code(){
+    private function _create_qr_code($weight){
+
+        $user = $this->getUser();
 
         $secret = uniqid() . substr(str_shuffle(MD5(microtime())), 0, 5);
         // $repository = $this->getDoctrine()->getRepository('AcmeDashboardBundle:Qrcode');
@@ -92,6 +95,9 @@ class HomeController extends Controller
             $code->setUsed(false);
             $code->setFilename($filename);
             $code->setCreated(new \DateTime("now"));
+           // $code->setUpdated(new \DateTime("now"));
+            $code->setWeight($weight);
+            $code->setUser($user->getUserId());
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($code);

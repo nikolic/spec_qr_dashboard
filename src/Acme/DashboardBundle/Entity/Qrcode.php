@@ -34,6 +34,20 @@ class Qrcode
      */
     private $created;
 
+    /**
+     * @var \DateTime
+     */
+    private $updated;
+
+    /**
+     * @var integer
+     */
+    private $weight;
+
+    /**
+     * @var user
+     */
+    private $user;
 
     /**
      * Get id
@@ -137,4 +151,70 @@ class Qrcode
         return $this->created;
     }
 
+    /**
+     * Set updated
+     *
+     * @param \DateTime $updated
+     * @return Qrcode
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+    
+        return $this;
+    }
+
+    /**
+     * Get updated
+     *
+     * @return \DateTime 
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * Set weight
+     *
+     * @return Qrcode
+     */
+    public function setWeight($weight)
+    {   
+        $this->weight = $weight;
+
+        return $this;
+    }
+
+    /**
+     * Get weight
+     *
+     * @return integer 
+     */
+    public function getWeight()
+    {
+        return $this->weight;
+    }
+
+    /**
+     * Set weight
+     *
+     * @return Qrcode
+     */
+    public function setUser($user)
+    {   
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get weight
+     *
+     * @return integer 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }

@@ -24,4 +24,8 @@ class User extends BaseUser
         parent::__construct();
         // your own logic
     }
+
+    public function getUserId(){
+        return $this->id;
+    }
 }

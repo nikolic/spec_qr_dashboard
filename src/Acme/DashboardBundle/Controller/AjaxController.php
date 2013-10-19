@@ -30,7 +30,7 @@ class AjaxController extends Controller
 				$unused++;
 	       }
 
-	       $dataTable[$i] = array($code->getSecret(), $code->getFilename(), !$code->getUsed(), 4 );
+	       $dataTable[$i] = array($code->getSecret(), $code->getFilename(), !$code->getUsed(), $code->getWeight() );
 
 	       $i++;
 	    }
