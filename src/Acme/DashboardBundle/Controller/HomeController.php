@@ -24,7 +24,11 @@ class HomeController extends Controller
     {
 
         if($this->get('request')->getMethod() == "GET"){
-            return $this->render('AcmeDashboardBundle:Home:create.html.twig', array('name' => $name));
+
+            $em = $this->getDoctrine()->getManager();
+            $weights = $em->getRepository('AcmeDashboardBundle:Weight')->findBy(array( 'active' => true));
+
+            return $this->render('AcmeDashboardBundle:Home:create.html.twig', array('name' => $name, 'weights' => $weights));
         }
         elseif($this->get('request')->getMethod() == "POST"){
 

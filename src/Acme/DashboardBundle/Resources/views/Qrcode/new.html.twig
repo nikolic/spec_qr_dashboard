@@ -1,6 +1,7 @@
-{% extends '::base.html.twig' %}
+{% extends 'AcmeDashboardBundle::layout.html.twig' %}
 
 {% block body -%}
+<div class="row">
     <h1>Qrcode creation</h1>
 
     {{ form(form) }}
@@ -12,4 +13,5 @@
         </a>
     </li>
 </ul>
+</div>
 {% endblock %}

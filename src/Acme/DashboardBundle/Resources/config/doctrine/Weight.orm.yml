@@ -1,0 +1,14 @@
+Acme\DashboardBundle\Entity\Weight:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        points:
+            type: integer
+        active:
+            type: boolean
+    lifecycleCallbacks: {  }

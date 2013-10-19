@@ -1,0 +1,17 @@
+{% extends 'AcmeDashboardBundle::layout.html.twig' %}
+
+{% block body %}
+<div class="row">
+    <h1>Weight creation</h1>
+
+    {{ form(form) }}
+
+    <ul class="record_actions">
+	    <li>
+	        <a href="{{ path('weight') }}">
+	            Back to the list
+	        </a>
+	    </li>
+	</ul>
+</div>
+{% endblock %}

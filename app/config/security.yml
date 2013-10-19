@@ -28,4 +28,6 @@ security:
         - { path: ^/statistics/*, role: IS_AUTHENTICATED_REMEMBERED }
         - { path: ^/reports/*, role: IS_AUTHENTICATED_REMEMBERED }
         - { path: ^/settings/*, role: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/weight/*, role: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/qrcode/*, role: IS_AUTHENTICATED_REMEMBERED }
         - { path: ^/admin/, role: ROLE_ADMIN }

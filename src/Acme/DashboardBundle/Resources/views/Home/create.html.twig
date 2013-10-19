@@ -12,9 +12,9 @@
 			<div class="row">
 				<div class="large-6 columns">Set weight:</div>
 				<select class="large-6 columns" name="weight" id="weight">
-					<option value="5">5</option>
-					<option value="10">10</option>
-					<option value="20">20</option>
+			        {% for weight in weights %}
+			       		<option value="{{weight.points}}">{{weight.points}}</option>
+			        {% endfor %}
 				</select>
 			</div>
 			<br/>
