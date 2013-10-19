@@ -217,4 +217,23 @@ class Qrcode
     {
         return $this->user;
     }
+
+    /**
+    * toArray
+    *
+    * @return Array
+    */
+    public function toArray(){
+
+      return  array('id' => $this->getId(),
+                    'weight' => $this->getWeight(),
+                    'used' => $this->getUsed(),
+                    'secret' => $this->getSecret(),
+                    'created' => $this->getCreated()->format('Y-m-d H:i:s'),
+                    'updated' => $this->getUpdated()->format('Y-m-d H:i:s'),
+                    'filename' => $this->getFilename(),
+                    'user' => $this->getUser()
+                );
+    }
+
 }

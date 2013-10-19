@@ -32,6 +32,13 @@ class ApiController extends Controller
  				  'error' => 'No code found for secret = '.$secret 
  			);
 	    }
+	    elseif($code->getUsed()){
+	    	$response = array('success' => false,
+ 				  'secret' => $secret,
+ 				  'code' => $code->toArray(),
+ 				  'error' => 'Already used.' 
+ 			);	
+	    }
 	    else
 	    {
 	    	$code->setUsed(true);
@@ -40,15 +47,7 @@ class ApiController extends Controller
 
 	    	$response = array('success' => true,
  				  'secret' => $secret,
- 				  'code'=> array('id' => $code->getId(),
- 				  				 'weight' =>  $code->getWeight(),
- 				  				 'used' => $code->getUsed(),
- 				  				 'secret' => $code->getSecret(),
- 				  				 'created' => $code->getCreated()->format('Y-m-d H:i:s'),
- 				  				 'updated' => $code->getUpdated()->format('Y-m-d H:i:s'),
- 				  				 'filename' => $code->getFilename(),
- 				  				 'user' => $code->getUser()
- 				  				 ),
+ 				  'code'=> $code->toArray(),
  				  'error' => null
  				);
 

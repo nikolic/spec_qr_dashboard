@@ -77,10 +77,6 @@ class HomeController extends Controller
         $user = $this->getUser();
 
         $secret = uniqid() . substr(str_shuffle(MD5(microtime())), 0, 5);
-        // $repository = $this->getDoctrine()->getRepository('AcmeDashboardBundle:Qrcode');
-        // $exist = $repository->findOneBy(array('secret' => $secret));
-
-      //  if(!$exist){
 
             $filename = uniqid() . ".png";
 
@@ -95,7 +91,6 @@ class HomeController extends Controller
             $code->setUsed(false);
             $code->setFilename($filename);
             $code->setCreated(new \DateTime("now"));
-           // $code->setUpdated(new \DateTime("now"));
             $code->setWeight($weight);
             $code->setUser($user->getUserId());
 
@@ -103,7 +98,7 @@ class HomeController extends Controller
             $em->persist($code);
             $em->flush();
 
-            $base_url = $baseurl = $this->getRequest()->getScheme() . '://' . $this->getRequest()->getHttpHost() . $this->getRequest()->getBasePath();
+            $base_url = $this->getRequest()->getScheme() . '://' . $this->getRequest()->getHttpHost() . $this->getRequest()->getBasePath();
 
             return array('code' => $code, 
                          'errors' => array(),
