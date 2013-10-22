@@ -71,17 +71,17 @@ class HomeController extends Controller
     public function reportsAction($name)
     {
        // return $this->render('AcmeDashboardBundle:Home:reports.html.twig', array('name' => $name));
-        // $base_url = $this->getRequest()->getScheme() . '://' . $this->getRequest()->getHttpHost() . $this->getRequest()->getBasePath();
+        $base_url = $this->getRequest()->getScheme() . '://' . $this->getRequest()->getHttpHost() . $this->getRequest()->getBasePath();
 
-        // $base_url .= "/codes/";
+        $base_url .= "/codes/";
 
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('AcmeDashboardBundle:Qrcode')->findAll();
 
         $html = $this->renderView('AcmeDashboardBundle:Home:reports.html.twig', array(
-            'entities'  => $entities
-          //  'base_url' => $base_url
+            'entities'  => $entities,
+            'base_url' => $base_url
         ));
 
         return new Response(
