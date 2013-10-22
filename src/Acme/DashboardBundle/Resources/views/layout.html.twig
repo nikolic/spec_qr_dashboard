@@ -48,17 +48,17 @@
                 <ul class="side-nav">
                     <li class="divider"></li>
                     <li class="active">
-                        <a class="small button" href="{{ path('acme_dashboard_create', { 'name': 'user' }) }}">
+                        <a class="small button" href="{{ path('acme_dashboard_create', { 'name': app.user.username }) }}">
                         Code Generator</a>
                     </li>
                     <li class="active">
-                        <a class="small button" href="{{ path('acme_dashboard_statistics', { 'name': 'user' }) }}">Statistics</a>
+                        <a class="small button" href="{{ path('acme_dashboard_statistics', { 'name': app.user.username }) }}">Statistics</a>
                     </li>
                     <li class="active">
-                        <a class="small button" href="{{ path('acme_dashboard_reports', { 'name': 'user' }) }}">Reports</a>
+                        <a class="small button" href="{{ path('acme_dashboard_reports', { 'name': app.user.username }) }}">Reports</a>
                     </li>
                     <li class="active">
-                        <a class="small button" href="{{ path('acme_dashboard_settings', { 'name': 'user' }) }}">Settings</a>
+                        <a class="small button" href="{{ path('acme_dashboard_settings', { 'name': app.user.username }) }}">Settings</a>
                     </li>
                     <li class="divider"></li>
                 </ul>
