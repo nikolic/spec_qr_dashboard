@@ -48,6 +48,8 @@ class HomeController extends Controller
                 $results = $this->_create_qr_code($weight);
             }
 
+          // $this->sendMailTest();
+
             return $this->render('AcmeDashboardBundle:Home:preview.html.twig',
                                  array(
                                     "url" => $results["url"],
@@ -134,4 +136,20 @@ class HomeController extends Controller
                         );   
 
     }
+
+
+    // public function sendMailTest(){
+    //     $message = \Swift_Message::newInstance()
+    //     ->setSubject('Hello Email')
+    //     ->setFrom('nikolic89@gmail.com')
+    //     ->setTo('radovanovicsladja@gmail.com')
+    //     ->setBody("kasandra"
+    //     );
+
+    //     $this->get('mailer')->send($message);
+
+    // }
+
+
+
 }

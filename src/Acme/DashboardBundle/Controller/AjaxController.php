@@ -46,4 +46,20 @@ class AjaxController extends Controller
 
     }
 
+
+    // public function sendMailTest(){
+    	
+    //     $message = \Swift_Message::newInstance()
+    //     ->setSubject('Hello Email')
+    //     ->setFrom('nikolic89@gmail.com')
+    //     ->setTo('radovanovicsladja@gmail.com')
+    //     ->setBody("kasandra"
+    //     );
+
+    //     $this->get('mailer')->send($message);
+
+    // }
+
+
+
 }
