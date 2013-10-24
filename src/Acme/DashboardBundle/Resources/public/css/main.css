@@ -305,7 +305,43 @@ html, body {
   top: 500%;
 }
 
+
+/* MY */
 .content_nav{
   color:white;
   text-decoration: none;
+}
+
+#fixed-bar {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    z-index: 100;
+    width: 100%;
+}
+#fixed-bar a {
+    color: white;
+    text-decoration: none;
+}
+#bar-inner {
+    width: 960px;
+    margin: 0 auto;
+    height: 36px;
+    line-height: 36px;
+}
+
+.logout_wrap{
+  float:right;
+}
+
+.logout A.logout_link{
+  float:right;
+}
+
+.logout_wrap DIV.username_bar{
+  float:right;
+  color:white;
+}
+.go-top{
+  float:left;
 }
