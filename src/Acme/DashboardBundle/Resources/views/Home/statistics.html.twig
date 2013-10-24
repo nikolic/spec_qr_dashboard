@@ -1,4 +1,4 @@
-{% extends 'AcmeDashboardBundle::layout.html.twig' %}
+
 {% block body %}
 	<div class="row">
 		<div class="large-12 columns">Statistics</div>
@@ -16,12 +16,5 @@
 		</div>
 	</div>
 	<br>
-    <script type='text/javascript' src='https://www.google.com/jsapi'></script>
-    <script type='text/javascript'>
-    	var GET_DATA_PATH = "{{path('acme_dashboard_getdata')}}";
-    </script>
-    <script type='text/javascript' src='{{asset("js/statistics.js")}}'></script>
-
-
 {% endblock %}
 

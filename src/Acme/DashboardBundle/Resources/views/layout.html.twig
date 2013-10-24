@@ -4,71 +4,53 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
         <title>{% block title %} Welcome!{% endblock %}</title>
 
         {% stylesheets '@AcmeDashboardBundle/Resources/public/css/*' filter='cssrewrite' %}
+
             <link rel="stylesheet" href="{{ asset_url }}" />
+
         {% endstylesheets %}
+
+        <script type="text/javascript">
+            var CREATE_QR_PATH = "{{ path('acme_dashboard_create', { 'name': app.user.username }) }}";
+            var STATISTICS_PATH = "{{ path('acme_dashboard_statistics', { 'name': app.user.username }) }}";
+
+            var GET_DATA_PATH = "{{path('acme_dashboard_getdata')}}";
+        </script>
 
         {% block stylesheets %}{% endblock %}
 
         <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
         <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script type='text/javascript' src='https://www.google.com/jsapi'></script>
         <script src="//cdn.jsdelivr.net/foundation/4.3.2/js/vendor/custom.modernizr.js"></script>
 
     </head>
-    <body style="background-color:#cccccc;">
-        <div class="row">
-            <div class="large-4 columns">
-                <br/>
-                <a class="large button expand round disabled">Dashboard</a>
-             
-            </div>
-               <hr />
-        </div>
-     
+    <body style="">
+        {% block body %}
 
-        <div class="row" id="content">
-            <!-- Main content -->
-            <div class="large-8 columns">
-                  {% block body %}{% endblock %}
-            </div>
 
+
+        {% endblock %}
+  
             <!-- sidebar -->
-            <div class="large-4 columns">
-                 <div class="row">
-                    <div class="large-12 columns">
-                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                            Hi {{ app.user.username }}
-                            <a href="{{ path('fos_user_security_logout') }}">{{ 'logout'|trans({}, 'FOSUserBundle') }}</a>
-                        {% endif %}
-                    </div>
-                </div>
-
-                <ul class="side-nav">
-                    <li class="divider"></li>
-                    <li class="active">
-                        <a class="small button" href="{{ path('acme_dashboard_create', { 'name': app.user.username }) }}">
-                        Code Generator</a>
-                    </li>
-                    <li class="active">
-                        <a class="small button" href="{{ path('acme_dashboard_statistics', { 'name': app.user.username }) }}">Statistics</a>
-                    </li>
-                    <li class="active">
-                        <a class="small button" href="{{ path('acme_dashboard_reports', { 'name': app.user.username }) }}">Reports</a>
-                    </li>
-                    <li class="active">
-                        <a class="small button" href="{{ path('acme_dashboard_settings', { 'name': app.user.username }) }}">Settings</a>
-                    </li>
-                    <li class="divider"></li>
-                </ul>
-            </div>
-
-        </div>
+ 
 
         <!-- JS  -->
 
         <script src="//cdn.jsdelivr.net/foundation/4.3.2/js/foundation.min.js"></script>
+
+        {% javascripts
+            '@AcmeDashboardBundle/Resources/public/js/jquery.windows.js'
+            '@AcmeDashboardBundle/Resources/public/js/statistics.js'
+            '@AcmeDashboardBundle/Resources/public/js/main.js'
+        %}
+
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+
+        {% endjavascripts %}
 
         {% block javascripts %}{% endblock %}
 
