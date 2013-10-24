@@ -84,6 +84,17 @@
             </div>
         </section>
 
+		<div id='fixed-bar'>
+		  <div id='bar-inner'>
+		    <a class='go-top' href='#page-wrapper' title='back to top'>Back to Top</a>
+		    <div class="logout_wrap">
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <div class="username_bar">Hi {{ app.user.username }}</div>
+                    <a class="logout_link" href="{{ path('fos_user_security_logout') }}">{{ 'logout'|trans({}, 'FOSUserBundle') }}</a>
+                {% endif %}  
+		    </div>
+		  </div>
+		</div>
 
         <script>
 
@@ -99,6 +110,25 @@
                     onSnapComplete: function($el){},
                     onWindowEnter: function($el){}
                 });
+
+                $(function () {
+				  $("#fixed-bar")
+				    .css({position:'fixed',bottom:'0px'})
+				    .hide();
+				  $(window).scroll(function () {
+				    if ($(this).scrollTop() > 400) {
+				      $('#fixed-bar').fadeIn(200);
+				    } else {
+				      $('#fixed-bar').fadeOut(200);
+				    }
+				  });
+				  $('.go-top').click(function () {
+				    $('html,body').animate({
+				      scrollTop: 0
+				    }, 1000);
+				    return false;
+				  });
+				});
 
             });
         </script>
