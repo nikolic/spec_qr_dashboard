@@ -6,8 +6,7 @@
 		</div>
 	</div>
 	
-	<div class="row">
-		<form method="POST" class="large-12 columns" action="{{ path('acme_dashboard_create', { name: 'user'}) }}"> 
+
 			<br/>
 			<div class="row">
 				<div class="large-6 columns">Set weight:</div>
@@ -16,16 +15,19 @@
 			       		<option value="{{weight.points}}">{{weight.points}}</option>
 			        {% endfor %}
 				</select>
-			</div>
-			<br/>
-			<div class="row">
+				<br/>
 				<div class="large-6 columns">Quantity:</div>
-				<input class="large-6 columns" name="quantity" id="quantity" value="1" />
+				<input class="large-6 columns" name="quantity" id="quantity" value="1" />	
+				<br/>
+				<input class="large-7 columns small button" type="submit" name="create_qr" id="create_qr"  value="Create"/>
 			</div>
 			<br/>
-			<div class="row">
-				<input class="large-7 columns small button" type="submit" name="create_qr"  value="Create"/>
+			<div id="preview_qr" class="row">
+
 			</div>
-		</form>
-	</div>
+
+
+
+
+
 {% endblock %}

@@ -6,6 +6,10 @@ acme_dashboard_create:
     pattern:  /create/{name}
     defaults: { _controller: AcmeDashboardBundle:Home:create }
 
+acme_dashboard_generate:
+    pattern:  /generate/{name}
+    defaults: { _controller: AcmeDashboardBundle:Home:generate }
+
 acme_dashboard_statistics:
     pattern:  /statistics/{name}
     defaults: { _controller: AcmeDashboardBundle:Home:statistics }

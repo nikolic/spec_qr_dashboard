@@ -25,43 +25,37 @@ class HomeController extends Controller
     public function createAction($name)
     {
 
-        if($this->get('request')->getMethod() == "GET"){
-
             $em = $this->getDoctrine()->getManager();
             $weights = $em->getRepository('AcmeDashboardBundle:Weight')->findBy(array( 'active' => true));
 
             return $this->render('AcmeDashboardBundle:Home:create.html.twig', array('name' => $name, 'weights' => $weights));
+    }
+
+    public function generateAction($name){
+
+        $quantity = $this->get('request')->get('quantity');
+        $weight = $this->get('request')->get('weight');
+
+        $weight = 5; // only for testing
+
+        if(!isset($quantity) || $quantity <= 0){
+            $quantity = 1;
         }
-        elseif($this->get('request')->getMethod() == "POST"){
 
-            $quantity = $this->get('request')->request->get('quantity');
+        $results = null;
 
-            $weight = $this->get('request')->request->get('weight');
-
-            if(!isset($quantity) || $quantity <= 0){
-                $quantity = 1;
-            }
-
-            $results = null;
-
-            for ($i = 0; $i < $quantity; $i++){
-                $results = $this->_create_qr_code($weight);
-            }
-
-          // $this->sendMailTest();
-
-            return $this->render('AcmeDashboardBundle:Home:preview.html.twig',
-                                 array(
-                                    "url" => $results["url"],
-                                    "created" => $results["code"]->getCreated(),
-                                    "filename" => $results["code"]->getFilename(),
-                                    "weight" => $results["code"]->getWeight()
-                                    ));
-
+        for ($i = 0; $i < $quantity; $i++){
+           $results = $this->_create_qr_code($weight);
         }
-        else{
 
-        }
+        return $this->render('AcmeDashboardBundle:Home:preview.html.twig',
+                             array(
+                                "url" => $results["url"],
+                                "created" => $results["code"]->getCreated(),
+                                "filename" => $results["code"]->getFilename(),
+                                "weight" => $results["code"]->getWeight()
+                                ));
+
 
     }
 

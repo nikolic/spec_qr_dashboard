@@ -14,20 +14,22 @@
                 <h2>
                 Loyalty<br/>
                 | -- QRcode<br/>
-                | -- | -- Create<br/>
+                | -- | -- <span class="highlight"><a class="content_nav" href="#create">Create</a></span><br/>
                 | -- Statistics & Reports<br/>
-                | -- | -- <span class="highlight"><a href="#statistics">Statistics</a></span><br/>
+                | -- | -- <span class="highlight"><a class="content_nav" href="#statistics">Statistics</a></span><br/>
                 | -- | -- <span class="highlight">
-                				<a class="small button" href="{{ path('acme_dashboard_reports', { 'name': app.user.username }) }}">Reports</a></span><br/>
+                				<a class="small button content_nav" href="{{ path('acme_dashboard_reports', { 'name': app.user.username }) }}">Reports</a></span><br/>
                 | -- Settings<br/>
-                | -- | -- <span class="highlight">Weights</span><br/>
-                | -- | -- <span class="highlight">QRcodes</span><br/>
-                | -- <span class="highlight">Info</span>
+                | -- | -- <span class="highlight"><a class="content_nav" href="#settings">Weights</a></span><br/>
+                | -- | -- <span class="highlight"><a  class="content_nav" href="#settings">QRcodes</a></span><br/>
+                | -- Info <br/>
+                | -- | -- <span class="highlight"><a class="content_nav" href="#info">How it works</a></span>
                 </h2>
             </div>
         </section>
 
         <section id="2" class="window">
+        	<a name="create"></a>
             <div class="content" id="code_generator">
 
             	<img src="{{asset('images/loader.GIF')}}" />
@@ -36,16 +38,17 @@
         </section>
 
         <section id="3" class="window">
+        	<a name="statistics"></a>
             <div class="content" id="statistics_and_reports">
-            	
+            	                
             	<img src="{{asset('images/loader.GIF')}}" />
 
             </div>
         </section>
 
         <section id="4" class="window">
+        	<a name="settings"></a>
             <div class="content">
-                <a name="statistics"></a>
                 <h1>api</h1>
                 <pre>
                     // returns ratio 0-1
@@ -64,6 +67,7 @@
         </section>
 
         <section id="5" class="window">
+        	<a name="info"></a>
             <div class="content">
                 <a href="https://github.com/nick-jonas/nick-jonas.github.com/tree/master/windows" title="Download Me!" id="btn-wrap">
                     <span class="title">Download Me</span>

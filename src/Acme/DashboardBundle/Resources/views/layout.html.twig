@@ -18,6 +18,8 @@
             var STATISTICS_PATH = "{{ path('acme_dashboard_statistics', { 'name': app.user.username }) }}";
 
             var GET_DATA_PATH = "{{path('acme_dashboard_getdata')}}";
+
+            var GENERATE_PATH = "{{path('acme_dashboard_generate', { 'name': app.user.username })}}";
         </script>
 
         {% block stylesheets %}{% endblock %}

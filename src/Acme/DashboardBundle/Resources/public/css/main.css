@@ -304,3 +304,8 @@ html, body {
   background: #231f20;
   top: 500%;
 }
+
+.content_nav{
+  color:white;
+  text-decoration: none;
+}
