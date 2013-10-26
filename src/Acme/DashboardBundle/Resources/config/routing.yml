@@ -38,6 +38,10 @@ acme_dashboard_api_update_qrcode:
     pattern:  /api/update/{secret}
     defaults: { _controller: AcmeDashboardBundle:Api:updateQrcode }
 
+acme_dashboard_api_show_qrcode:
+    pattern:  /api/show/{secret}
+    defaults: { _controller: AcmeDashboardBundle:Api:showQrcode }
+
 qrcode:
     resource: "@AcmeDashboardBundle/Controller"
     type:     annotation
