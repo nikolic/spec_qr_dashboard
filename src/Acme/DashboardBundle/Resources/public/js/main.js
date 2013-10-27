@@ -11,11 +11,17 @@ var Dashboard = function(){
     $(document).on("click", "#create_qr", function(){
       var formData = { weight: parseInt($("#weight").val()),
                        quantity: parseInt($("#quantity").val())};
-      console.log(formData);
 
       self.generateQRcode(formData);
 
     });
+
+    $(document).on("click", "#sendEmail", function(){
+        var data = { email : $("#email").val(), filename : $("#filename").val() };
+        
+        self.sendToMail(data);
+    });
+
 
   }
 
@@ -56,6 +62,25 @@ var Dashboard = function(){
           console.log(err);
         }
       });
+  }
+
+  this.sendToMail = function(data){
+    console.log(data);
+    $.ajax({
+      type: "POST",
+      url: SEND_MAIL_PATH,
+      data: JSON.stringify(data),
+      contentType: "application/json; charset=utf-8",
+      dataType: "text",
+      success: function(html){
+        $("#email").val("");
+        alert("Mail sent.");
+      },
+      error : function(err){
+        console.log(err);
+      }
+    });
+
   }
 
   this.init();

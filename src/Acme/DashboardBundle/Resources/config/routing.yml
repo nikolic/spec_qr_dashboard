@@ -30,6 +30,10 @@ acme_dashboard_getdata:
     pattern:  /ajax/getdata
     defaults: { _controller: AcmeDashboardBundle:Ajax:getdata }
 
+acme_dashboard_send_mail:
+    pattern:  /ajax/sendmail
+    defaults: { _controller: AcmeDashboardBundle:Ajax:sendMail }
+
 acme_dashboard_api_test:
     pattern:  /api/ping
     defaults: { _controller: AcmeDashboardBundle:Api:ping }

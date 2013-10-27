@@ -24,7 +24,6 @@ class HomeController extends Controller
 
     public function createAction($name)
     {
-
             $em = $this->getDoctrine()->getManager();
             $weights = $em->getRepository('AcmeDashboardBundle:Weight')->findBy(array( 'active' => true));
 
@@ -33,10 +32,10 @@ class HomeController extends Controller
 
     public function generateAction($name){
 
-        $quantity = $this->get('request')->get('quantity');
-        $weight = $this->get('request')->get('weight');
+        $JSONdata = json_decode($this->getRequest()->getContent(), true);
 
-        $weight = 5; // only for testing
+        $weight = $JSONdata['weight'];
+        $quantity = $JSONdata['quantity'];
 
         if(!isset($quantity) || $quantity <= 0){
             $quantity = 1;
@@ -56,7 +55,6 @@ class HomeController extends Controller
                                 "weight" => $results["code"]->getWeight()
                                 ));
 
-
     }
 
     public function statisticsAction($name)
@@ -66,7 +64,6 @@ class HomeController extends Controller
 
     public function reportsAction($name)
     {
-       // return $this->render('AcmeDashboardBundle:Home:reports.html.twig', array('name' => $name));
         $base_url = $this->getRequest()->getScheme() . '://' . $this->getRequest()->getHttpHost() . $this->getRequest()->getBasePath();
 
         $base_url .= "/codes/";
@@ -130,20 +127,5 @@ class HomeController extends Controller
                         );   
 
     }
-
-
-    // public function sendMailTest(){
-    //     $message = \Swift_Message::newInstance()
-    //     ->setSubject('Hello Email')
-    //     ->setFrom('nikolic89@gmail.com')
-    //     ->setTo('radovanovicsladja@gmail.com')
-    //     ->setBody("kasandra"
-    //     );
-
-    //     $this->get('mailer')->send($message);
-
-    // }
-
-
 
 }

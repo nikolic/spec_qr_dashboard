@@ -47,18 +47,30 @@ class AjaxController extends Controller
     }
 
 
-    // public function sendMailTest(){
-    	
-    //     $message = \Swift_Message::newInstance()
-    //     ->setSubject('Hello Email')
-    //     ->setFrom('nikolic89@gmail.com')
-    //     ->setTo('radovanovicsladja@gmail.com')
-    //     ->setBody("kasandra"
-    //     );
+    public function sendMailAction(){
 
-    //     $this->get('mailer')->send($message);
+    	$JSONdata = json_decode($this->getRequest()->getContent(), true);
+        $base_url = $this->getRequest()->getScheme() . '://' . $this->getRequest()->getHttpHost() . $this->getRequest()->getBasePath();
 
-    // }
+        $email = $JSONdata['email'];
+        $filename = $JSONdata['filename'];
+
+
+        $message = \Swift_Message::newInstance()
+        ->setSubject('Loyalty code')
+        ->setFrom('nikolic89@gmail.com')
+        ->setTo($email)
+        ->setBody("")
+        ->addPart("<a href='" . $base_url . "/codes/" .$filename . "'>ViewCode</a>", 'text/html');
+
+        $this->get('mailer')->send($message);
+
+        $response = array('success' => true, 'email' => $email, 'filename' => $filename);
+
+
+        return new Response(json_encode($response)); 
+
+    }
 
 
 

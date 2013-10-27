@@ -1,33 +1,21 @@
 
 {% block body %}
-	<div class="row">
-		<div class="large-12 columns">
-			<h3>Create QR CODE</h3>
-		</div>
+	<div id="create_new_qr" class="row">
+		<h3>Create QR CODE</h3>
+		<div class="large-6 columns">Set weight:</div>
+		<select class="large-6 columns" name="weight" id="weight">
+	        {% for weight in weights %}
+	       		<option value="{{weight.points}}">{{weight.points}}</option>
+	        {% endfor %}
+		</select>
+		<br/>
+		<div class="large-6 columns">Quantity:</div>
+		<input class="large-6 columns" name="quantity" id="quantity" value="1" />	
+		<br/>
+		<input class="large-7 columns small button" type="submit" name="create_qr" id="create_qr"  value="Create"/>
 	</div>
-	
+	<div id="preview_qr" class="row">
 
-			<br/>
-			<div class="row">
-				<div class="large-6 columns">Set weight:</div>
-				<select class="large-6 columns" name="weight" id="weight">
-			        {% for weight in weights %}
-			       		<option value="{{weight.points}}">{{weight.points}}</option>
-			        {% endfor %}
-				</select>
-				<br/>
-				<div class="large-6 columns">Quantity:</div>
-				<input class="large-6 columns" name="quantity" id="quantity" value="1" />	
-				<br/>
-				<input class="large-7 columns small button" type="submit" name="create_qr" id="create_qr"  value="Create"/>
-			</div>
-			<br/>
-			<div id="preview_qr" class="row">
-
-			</div>
-
-
-
-
+	</div>
 
 {% endblock %}
