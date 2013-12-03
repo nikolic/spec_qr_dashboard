@@ -384,3 +384,12 @@ html, body {
   padding:4%;
   margin-top: -4%;
 }
+
+
+.settings_link{
+  float: left;
+  margin-left: 50%;
+  margin-top: 15%;
+  text-decoration: none;
+  color: black;
+}

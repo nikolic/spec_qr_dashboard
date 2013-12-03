@@ -57,6 +57,7 @@ var Dashboard = function(){
         success: function(html){
           //console.log(data);
           $("#preview_qr").html(html);
+          self.LoadPart(STATISTICS_PATH, $("#statistics_and_reports"), self.onLoadedStatistics);
         },
         error : function(err){
           console.log(err);

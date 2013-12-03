@@ -49,19 +49,16 @@
         <section id="4" class="window">
         	<a name="settings"></a>
             <div class="content">
-                <h1>api</h1>
-                <pre>
-                    // returns ratio 0-1
-                    $('.window:eq(0)').ratioVisible();
-
-                    // returns boolean of whether or not is visible on screen
-                    $('.window:eq(0)').isOnScreen();
-
-                    // get most visible window
-                    $('.window').getCurrentWindow();
-
-
-                </pre>
+                <div>
+                    <a class="settings_link" target="_blank" href="/weight/index">
+                        <img src="{{asset('images/weight.png')}}" />
+                        <div >Weights</div>
+                    </a>
+                    <a class="settings_link" target="_blank" href="/qrcode/index">
+                        <img src="{{asset('images/qrcode.png')}}" />
+                        <div >QRcodes</div>
+                    </a>
+                </div>
             </div>
 
         </section>
@@ -69,18 +66,7 @@
         <section id="5" class="window">
         	<a name="info"></a>
             <div class="content">
-                <a href="https://github.com/nick-jonas/nick-jonas.github.com/tree/master/windows" title="Download Me!" id="btn-wrap">
-                    <span class="title">Download Me</span>
-                    <div id="info">
-                        <p>
-                            <strong>Version 0.0.1 /</strong>
-                            <span>1 MB</span>
-                        </p>
-                    </div>
-                </a>
-
-                <iframe src="http://ghbtns.com/github-btn.html?user=nick-jonas&repo=windows&type=fork&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="156px" height="30px" style="margin:50px 0 0 50px;"></iframe>
-
+                <div>Marko Nikolic</div>
             </div>
         </section>
 
